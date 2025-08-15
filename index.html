@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Hyper Adityaa — Journey to Billionaire</title>
+	<meta name="description" content="Hyper Adityaa — documenting the journey to becoming a billionaire before April 17, 2030." />
+
+	<style>
+		:root {
+			--bg: #0a0a0f;
+			--charcoal: #0f0f23;
+			--muted: #8b8b9a;
+			--text: #f0f0f5;
+			--white: #ffffff;
+			--blue: #00d4ff; /* electric blue */
+			--gold: #ffd700; /* bright gold */
+			--purple: #8b5cf6; /* vibrant purple */
+			--danger: #ff4757;
+			--success: #2ed573;
+			--gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			--gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+			--gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+			--gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			color: var(--text);
+			background: 
+				radial-gradient(1200px 800px at 10% -10%, rgba(0,212,255,0.15), transparent 60%),
+				radial-gradient(900px 600px at 110% 10%, rgba(255,215,0,0.12), transparent 60%),
+				radial-gradient(800px 600px at 50% 50%, rgba(139,92,246,0.08), transparent 60%),
+				linear-gradient(180deg, var(--bg) 0%, var(--charcoal) 100%);
+			overflow-x: hidden;
+		}
+		
+		/* Custom Scrollbar */
+		::-webkit-scrollbar { width: 8px; }
+		::-webkit-scrollbar-track { background: var(--charcoal); }
+		::-webkit-scrollbar-thumb { background: var(--gradient-3); border-radius: 4px; }
+		::-webkit-scrollbar-thumb:hover { background: var(--gradient-1); }
+		
+		/* Smooth Animations */
+		@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+		@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+		@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(0,212,255,0.5); } 50% { box-shadow: 0 0 40px rgba(0,212,255,0.8); } }
+		@keyframes slideInLeft { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+		@keyframes slideInRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+		@keyframes fadeInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+		@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+		.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+		.section { padding: 96px 0; scroll-margin-top: 96px; }
+
+		/* Navbar */
+		header.navbar {
+			position: sticky; top: 0; z-index: 50;
+			backdrop-filter: blur(20px);
+			background: rgba(10,10,15,0.8);
+			border-bottom: 1px solid rgba(255,255,255,0.1);
+			transition: all 0.3s ease;
+		}
+		header.navbar.scrolled {
+			background: rgba(10,10,15,0.95);
+			box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+		}
+		.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+		.brand { display: flex; align-items: center; gap: 16px; font-weight: 800; letter-spacing: 0.5px; }
+		.brand-logo {
+			width: 48px; height: 48px; border-radius: 16px; overflow: hidden;
+			box-shadow: 0 0 30px rgba(0,212,255,0.4), 0 0 30px rgba(255,215,0,0.3) inset;
+			animation: glow 3s ease-in-out infinite;
+			transition: transform 0.3s ease;
+		}
+		.brand-logo:hover { transform: scale(1.1) rotate(5deg); }
+		.brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+		.brand-name { font-size: 20px; background: var(--gradient-3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+		nav a { 
+			color: var(--text); text-decoration: none; margin-left: 32px; opacity: 0.9; position: relative; 
+			font-weight: 500; transition: all 0.3s ease;
+		}
+		nav a:hover { opacity: 1; color: var(--blue); transform: translateY(-2px); }
+		nav a::after {
+			content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 3px;
+			background: var(--gradient-3);
+			opacity: 0; transform: scaleX(0); transition: transform 0.3s ease, opacity 0.3s ease;
+		}
+		nav a:hover::after { opacity: 1; transform: scaleX(1); }
+
+		.menu-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.12); color: var(--text); padding: 8px 12px; border-radius: 8px; }
+		@media (max-width: 860px) {
+			nav { position: fixed; inset: 72px 0 auto 0; background: rgba(10,10,14,0.95); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 200ms ease; }
+			nav.open { opacity: 1; pointer-events: auto; }
+			nav .nav-links { display: grid; gap: 12px; padding: 16px 24px 24px; }
+			nav a { margin: 0; padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+			.menu-btn { display: inline-flex; align-items: center; gap: 8px; }
+		}
+
+		/* Hero */
+		.hero { 
+			min-height: 100vh; display: grid; place-items: center; position: relative; overflow: hidden; 
+			background: 
+				radial-gradient(1200px 800px at 20% 20%, rgba(0,212,255,0.15), transparent 60%),
+				radial-gradient(1000px 700px at 80% 80%, rgba(255,215,0,0.12), transparent 60%),
+				radial-gradient(800px 600px at 50% 50%, rgba(139,92,246,0.08), transparent 60%);
+		}
+		.hero .bg-gradient {
+			position: absolute; inset: 0; z-index: -1;
+			background:
+				radial-gradient(1000px 700px at 10% 0%, rgba(0,212,255,0.2), transparent 60%),
+				radial-gradient(1000px 700px at 90% 15%, rgba(255,215,0,0.18), transparent 60%);
+			filter: blur(15px);
+			animation: float 6s ease-in-out infinite;
+		}
+		.hero-inner { text-align: center; padding: 60px 0; position: relative; z-index: 2; }
+		
+		/* Hero Profile Photo - Enhanced */
+		.hero-profile {
+			position: relative; margin: 0 auto 50px; width: 220px; height: 220px;
+			perspective: 1000px;
+		}
+		.profile-image {
+			width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+			border: 6px solid rgba(255,255,255,0.15); 
+			box-shadow: 
+				0 0 60px rgba(0,212,255,0.4),
+				0 0 120px rgba(0,212,255,0.2),
+				inset 0 0 60px rgba(255,215,0,0.1);
+			animation: float 8s ease-in-out infinite;
+			transition: all 0.5s ease;
+			position: relative; z-index: 3;
+		}
+		.profile-image:hover {
+			transform: scale(1.05) rotateY(10deg);
+			box-shadow: 
+				0 0 80px rgba(0,212,255,0.6),
+				0 0 160px rgba(0,212,255,0.3),
+				inset 0 0 80px rgba(255,215,0,0.2);
+		}
+		.profile-glow {
+			position: absolute; inset: -12px; border-radius: 50%; 
+			background: var(--gradient-3); opacity: 0.4; filter: blur(25px);
+			animation: pulse 6s ease-in-out infinite;
+			z-index: 1;
+		}
+		.profile-glow::before {
+			content: ''; position: absolute; inset: -8px; border-radius: 50%;
+			background: var(--gradient-4); opacity: 0.3; filter: blur(20px);
+			animation: pulse 4s ease-in-out infinite reverse;
+		}
+		.profile-glow::after {
+			content: ''; position: absolute; inset: -4px; border-radius: 50%;
+			background: var(--gradient-2); opacity: 0.2; filter: blur(15px);
+			animation: pulse 5s ease-in-out infinite;
+		}
+		
+		/* Profile photo ring effect */
+		.hero-profile::before {
+			content: ''; position: absolute; inset: -20px; border-radius: 50%;
+			border: 2px solid transparent; background: var(--gradient-3);
+			background-clip: padding-box; mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+			mask-composite: exclude; animation: rotate 20s linear infinite;
+			z-index: 2;
+		}
+		.kicker { 
+			color: var(--muted); text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 20px; 
+			background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; color: transparent;
+			font-weight: 600;
+		}
+		.hero h1 { 
+			font-size: clamp(40px, 8vw, 80px); line-height: 1.05; margin: 0 0 24px; font-weight: 900; 
+			text-shadow: 0 0 30px rgba(0,212,255,0.3);
+		}
+		.hero h1 .gradient { 
+			background: var(--gradient-3); -webkit-background-clip: text; background-clip: text; color: transparent;
+			animation: pulse 3s ease-in-out infinite;
+		}
+		.hero p { 
+			font-size: clamp(18px, 3vw, 24px); opacity: 0.95; margin: 0 auto 40px; max-width: 800px; 
+			line-height: 1.6; font-weight: 400;
+		}
+		.cta { display: inline-flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+		.btn { 
+			padding: 18px 32px; border-radius: 16px; border: 2px solid transparent; color: var(--white); 
+			text-decoration: none; font-weight: 700; font-size: 16px; letter-spacing: 0.5px;
+			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;
+		}
+		.btn::before {
+			content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+			transition: left 0.5s ease;
+		}
+		.btn:hover::before { left: 100%; }
+		.btn:active { transform: translateY(2px); }
+		.btn-primary { 
+			background: var(--gradient-3); border-color: var(--blue); 
+			box-shadow: 0 8px 32px rgba(0,212,255,0.3);
+		}
+		.btn-primary:hover { 
+			transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,212,255,0.4);
+		}
+		.btn-secondary { 
+			background: var(--gradient-4); border-color: var(--gold);
+			box-shadow: 0 8px 32px rgba(255,215,0,0.3);
+		}
+		.btn-secondary:hover { 
+			transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255,215,0,0.4);
+		}
+		
+		/* Countdown Timer Styling */
+		.countdown-container {
+			margin-top: 40px; padding: 24px; background: rgba(255,255,255,0.05);
+			border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; backdrop-filter: blur(10px);
+		}
+		.countdown-title {
+			font-size: 16px; color: var(--muted); margin-bottom: 20px; font-weight: 600;
+			text-transform: uppercase; letter-spacing: 1px;
+		}
+		.countdown {
+			display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+		}
+		.countdown-item {
+			text-align: center; min-width: 80px;
+		}
+		.countdown-number {
+			display: block; font-size: 32px; font-weight: 800; color: var(--blue);
+			text-shadow: 0 0 20px rgba(0,212,255,0.5); margin-bottom: 8px;
+		}
+		.countdown-label {
+			font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+			font-weight: 600;
+		}
+		
+		@media (max-width: 640px) {
+			.countdown { gap: 15px; }
+			.countdown-item { min-width: 60px; }
+			.countdown-number { font-size: 24px; }
+		}
+
+		/* Reveal animations */
+		.reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
+		.reveal.in { opacity: 1; transform: none; }
+
+		/* Journey */
+		.section-title { 
+			font-size: clamp(28px, 5vw, 48px); margin: 0 0 20px; font-weight: 800;
+			background: var(--gradient-3); -webkit-background-clip: text; background-clip: text; color: transparent;
+		}
+		.section-sub { color: var(--muted); margin: 0 0 32px; font-size: 18px; line-height: 1.6; }
+		.bio { 
+			background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); 
+			border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px;
+			backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+		}
+		
+
+
+		.metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 18px; }
+		.metric {
+			background: #0e1117; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;
+		}
+		.metric .num { font-size: clamp(24px, 4vw, 40px); font-weight: 800; }
+		.metric .label { color: var(--muted); font-size: 14px; }
+		.metric .num.blue { color: var(--blue); text-shadow: 0 0 16px rgba(14,165,233,0.25); }
+		.metric .num.gold { color: var(--gold); text-shadow: 0 0 16px rgba(246,198,70,0.25); }
+
+		.timeline { margin-top: 28px; background: #0e1117; padding: 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); }
+		.timeline-bar { position: relative; height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+		.timeline-bar > .progress { position: absolute; inset: 0 auto 0 0; width: 0%; background: linear-gradient(90deg, var(--blue), var(--gold)); box-shadow: 0 0 20px rgba(14,165,233,0.35); }
+		.milestones { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px; }
+		.milestone { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; cursor: pointer; transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; }
+		.milestone:hover { transform: translateY(-2px); border-color: rgba(14,165,233,0.5); }
+		.milestone.active { background: rgba(14,165,233,0.08); border-color: rgba(14,165,233,0.6); }
+		.milestone .m-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+		.milestone .m-date { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+		.milestone .m-desc { font-size: 13px; opacity: 0.9; }
+
+		@media (max-width: 900px) {
+			.milestones { grid-template-columns: 1fr 1fr; }
+		}
+		@media (max-width: 560px) {
+			.metrics { grid-template-columns: 1fr; }
+			.milestones { grid-template-columns: 1fr; }
+		}
+
+		/* Content - Simplified Social Links */
+		.social-links-container { 
+			display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; 
+			max-width: 1000px; margin: 0 auto;
+		}
+		@media (max-width: 1024px) { 
+			.social-links-container { 
+				grid-template-columns: repeat(2, 1fr); 
+				gap: 20px; 
+			} 
+		}
+		@media (max-width: 768px) { 
+			.social-links-container { 
+				grid-template-columns: 1fr; 
+				gap: 20px; 
+			} 
+		}
+		.video-wrap { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #0e1117; }
+		.video-wrap::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 100px rgba(0,0,0,0.35); }
+		.video { width: 100%; aspect-ratio: 16/9; border: 0; display: block; object-fit: cover; }
+		
+		/* Video Thumbnail Styling */
+		.video-thumbnail { display: block; text-decoration: none; color: inherit; position: relative; }
+		.video-overlay {
+			position: absolute; inset: 0; background: rgba(0,0,0,0.7);
+			display: flex; flex-direction: column; align-items: center; justify-content: center;
+			opacity: 0; transition: opacity 200ms ease; color: white; text-align: center;
+		}
+		.video-thumbnail:hover .video-overlay { opacity: 1; }
+		.play-button { margin-bottom: 16px; }
+		.play-button svg { color: var(--blue); filter: drop-shadow(0 0 20px rgba(14,165,233,0.5)); }
+		.video-text h3 { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+		.video-text p { margin: 0; opacity: 0.9; font-size: 14px; }
+
+		.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+		@media (max-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+		.grid .tile { position: relative; border-radius: 14px; overflow: hidden; height: 180px; background: linear-gradient(135deg, rgba(14,165,233,0.18), rgba(246,198,70,0.18)); border: 1px solid rgba(255,255,255,0.08); cursor: pointer; }
+		.grid .tile img { width: 100%; height: 100%; object-fit: cover; }
+		.grid .tile::before { content: ""; position: absolute; inset: 0; background: radial-gradient(500px 180px at 50% 0%, rgba(255,255,255,0.06), transparent 60%); }
+		.grid .tile .label { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,0.45); padding: 6px 10px; border-radius: 999px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.12); font-size: 12px; }
+		.grid .tile:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(14,165,233,0.15); }
+		.grid .tile:hover img { transform: scale(1.05); }
+		.grid .tile img { transition: transform 200ms ease; }
+		
+		/* Social Link Styling */
+		.social-link { text-decoration: none; color: inherit; display: block; }
+		.social-overlay {
+			position: absolute; inset: 0; background: rgba(0,0,0,0.8);
+			display: flex; flex-direction: column; align-items: center; justify-content: center;
+			opacity: 0; transition: opacity 200ms ease; color: white; text-align: center;
+		}
+		.social-link:hover .social-overlay { opacity: 1; }
+		.social-icon { width: 32px; height: 32px; margin-bottom: 8px; }
+		.social-overlay span { font-size: 12px; font-weight: 600; }
+		
+		/* Social Link Cards */
+		.social-link-card {
+			background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+			border-radius: 20px; padding: 32px; backdrop-filter: blur(10px);
+			box-shadow: 0 8px 32px rgba(0,0,0,0.2); transition: all 0.4s ease;
+			text-align: center; position: relative; overflow: hidden;
+		}
+		.social-link-card::before {
+			content: ''; position: absolute; inset: 0; background: var(--gradient-3);
+			opacity: 0; transition: opacity 0.4s ease;
+		}
+		.social-link-card:hover::before { opacity: 0.1; }
+		.social-link-card:hover {
+			transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+			border-color: rgba(0,212,255,0.3);
+		}
+		
+		.social-link-card a {
+			text-decoration: none; color: inherit; display: block; position: relative; z-index: 2;
+		}
+		
+		.social-icon-large {
+			width: 80px; height: 80px; margin: 0 auto 24px; border-radius: 50%;
+			background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+			transition: all 0.4s ease;
+		}
+		.social-link-card:hover .social-icon-large {
+			transform: scale(1.1); background: rgba(255,255,255,0.15);
+		}
+		.social-icon-large svg { color: var(--blue); filter: drop-shadow(0 0 20px rgba(0,212,255,0.5)); }
+		
+		.social-link-card h3 {
+			font-size: 24px; font-weight: 700; margin: 0 0 16px; color: var(--text);
+		}
+		.social-link-card p {
+			font-size: 16px; line-height: 1.6; margin: 0 0 24px; color: var(--muted);
+		}
+		.social-cta {
+			display: inline-block; padding: 12px 24px; background: var(--gradient-3);
+			color: white; font-weight: 600; border-radius: 12px; font-size: 14px;
+			transition: all 0.3s ease;
+		}
+		.social-link-card:hover .social-cta {
+			transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,212,255,0.4);
+		}
+		
+		/* YouTube specific styling */
+		.social-link-card.youtube .social-icon-large svg { color: #ff0000; filter: drop-shadow(0 0 20px rgba(255,0,0,0.5)); }
+		.social-link-card.youtube .social-cta { background: var(--gradient-2); }
+		
+		/* Instagram specific styling */
+		.social-link-card.instagram .social-icon-large svg { color: #e4405f; filter: drop-shadow(0 0 20px rgba(228,64,95,0.5)); }
+		.social-link-card.instagram .social-cta { background: var(--gradient-4); }
+		
+		/* E-book specific styling */
+		.social-link-card.ebook .social-icon-large svg { color: #f39c12; filter: drop-shadow(0 0 20px rgba(243,156,18,0.5)); }
+		.social-link-card.ebook .social-cta { background: var(--gradient-1); }
+
+		/* Blog */
+		.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+		@media (max-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
+		@media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+		.card { background: #0e1117; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+		.card:hover { transform: translateY(-4px); border-color: rgba(14,165,233,0.5); box-shadow: 0 10px 30px rgba(14,165,233,0.15); }
+		.card .thumb { height: 180px; background: linear-gradient(135deg, rgba(14,165,233,0.24), rgba(246,198,70,0.24)); position: relative; }
+		.card .thumb::after { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 220px at 60% 0, rgba(255,255,255,0.08), transparent 60%); }
+		.card .body { padding: 16px; }
+		.card h4 { margin: 0 0 8px; }
+		.card p { margin: 0 0 12px; color: var(--muted); }
+		.card a.read-more { color: var(--blue); font-weight: 600; text-decoration: none; }
+		.card a.read-more:hover { text-decoration: underline; }
+
+		/* Direct Contact */
+		.direct-contact { 
+			background: rgba(255,255,255,0.05); 
+			padding: 48px; 
+			border-radius: 24px; 
+			backdrop-filter: blur(20px); 
+			border: 2px solid var(--purple); 
+			max-width: 600px; 
+			margin: 0 auto; 
+			text-align: center;
+		}
+		.direct-contact-icon { 
+			width: 64px; 
+			height: 64px; 
+			margin: 0 auto 24px; 
+			color: var(--purple); 
+			filter: drop-shadow(0 0 20px rgba(147,51,234,0.5));
+		}
+		.contact-methods { 
+			display: flex; 
+			flex-direction: column; 
+			gap: 20px; 
+		}
+		.contact-method { 
+			background: rgba(255,255,255,0.08); 
+			padding: 24px; 
+			border-radius: 16px; 
+			border: 1px solid rgba(255,255,255,0.1); 
+			display: flex; 
+			align-items: center; 
+			gap: 20px; 
+			transition: all 0.3s ease; 
+		}
+		.contact-method:hover { 
+			transform: translateY(-2px); 
+			background: rgba(255,255,255,0.12); 
+			border-color: var(--purple); 
+		}
+		.contact-method-icon { 
+			width: 48px; 
+			height: 48px; 
+			color: var(--purple); 
+			flex-shrink: 0; 
+		}
+		.contact-method-content { 
+			text-align: left; 
+			flex: 1; 
+		}
+		.contact-method h3 { 
+			color: var(--white); 
+			font-size: 20px; 
+			font-weight: 600; 
+			margin-bottom: 8px; 
+		}
+		.contact-method .contact-detail { 
+			color: var(--purple); 
+			font-size: 18px; 
+			font-weight: 600; 
+			margin-bottom: 4px; 
+		}
+		.contact-method .contact-note { 
+			color: var(--text-light); 
+			font-size: 14px; 
+		}
+		@media (max-width: 768px) { 
+			.direct-contact { padding: 32px 24px; }
+			.contact-method { padding: 20px; }
+		}
+
+		.socials { display: flex; gap: 12px; flex-wrap: wrap; }
+		.icon-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: #0e1117; color: var(--text); text-decoration: none; transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
+		.icon-btn:hover { transform: translateY(-2px); border-color: rgba(14,165,233,0.5); box-shadow: 0 10px 30px rgba(14,165,233,0.15); }
+		.icon { width: 18px; height: 18px; fill: currentColor; }
+
+		/* Lightbox */
+		.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
+		.lightbox.open { display: flex; }
+		.lightbox-content { position: relative; width: min(100%, 1000px); }
+		.lightbox-frame { width: 100%; border: 1px solid rgba(255,255,255,0.12); background: #0b0e14; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+		.lightbox-media { width: 100%; display: block; max-height: 80vh; object-fit: contain; border-radius: 8px; }
+		.lightbox-close { position: absolute; top: -12px; right: -12px; background: linear-gradient(135deg, rgba(14,165,233,0.9), rgba(246,198,70,0.9)); border: none; color: #000; font-weight: 800; border-radius: 999px; width: 40px; height: 40px; cursor: pointer; box-shadow: 0 10px 30px rgba(14,165,233,0.35); }
+
+		/* Footer & back-to-top */
+		footer { padding: 28px 0 60px; color: var(--muted); text-align: center; }
+		.back-to-top { 
+			position: fixed; right: 20px; bottom: 20px; background: var(--charcoal); 
+			border: 1px solid rgba(255,255,255,0.1); color: var(--text); border-radius: 999px; 
+			padding: 12px 16px; cursor: pointer; display: none; z-index: 60; 
+			transition: all 0.3s ease; backdrop-filter: blur(10px);
+		}
+		.back-to-top:hover { 
+			background: var(--gradient-3); transform: translateY(-3px); 
+			box-shadow: 0 8px 25px rgba(0,212,255,0.4);
+		}
+		.back-to-top.show { display: inline-flex; animation: fadeInUp 0.5s ease; }
+		
+		/* Loading animations */
+		body:not(.loaded) .reveal { opacity: 0; transform: translateY(30px); }
+		body.loaded .reveal.in { animation: fadeInUp 0.8s ease forwards; }
+		
+		/* Enhanced mobile responsiveness */
+		@media (max-width: 768px) {
+			.hero h1 { font-size: clamp(32px, 8vw, 60px); }
+			.hero p { font-size: clamp(16px, 4vw, 20px); }
+			.btn { padding: 16px 24px; font-size: 14px; }
+			.countdown { gap: 12px; }
+			.countdown-item { min-width: 50px; }
+			.countdown-number { font-size: 20px; }
+			
+			/* Mobile profile photo adjustments */
+			.hero-profile { width: 180px; height: 180px; margin-bottom: 30px; }
+		}
+		
+		@media (max-width: 480px) {
+			.hero-profile { width: 160px; height: 160px; margin-bottom: 25px; }
+		}
+		
+		/* Performance optimizations */
+		.reveal { will-change: transform, opacity; }
+		.roadmap-item { will-change: transform; }
+		.countdown-number { will-change: transform; }
+
+		/* Hyper Club (spotlight component) */
+		.club {
+			background: radial-gradient(1000px 600px at 10% -10%, rgba(14,165,233,0.12), transparent 60%),
+				radial-gradient(800px 500px at 110% 0%, rgba(246,198,70,0.10), transparent 60%);
+		}
+		.club-banner {
+			background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+			border: 1px solid rgba(255,255,255,0.10);
+			border-radius: 20px;
+			padding: 24px;
+			position: relative;
+			overflow: hidden;
+		}
+		.club-banner::before {
+			content: ""; position: absolute; inset: -1px; border-radius: 20px;
+			background: radial-gradient(600px 120px at 20% 0%, rgba(14,165,233,0.18), transparent 60%),
+				radial-gradient(600px 120px at 80% 0%, rgba(246,198,70,0.16), transparent 60%);
+			opacity: 0.7; pointer-events: none;
+		}
+		.club-head { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; align-items: center; }
+		@media (max-width: 900px) { .club-head { grid-template-columns: 1fr; } }
+		.club-title { margin: 0 0 8px; font-size: clamp(24px, 4vw, 40px); }
+		.club-sub { margin: 0 0 12px; color: var(--muted); }
+		.badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.10); background: #0e1117; font-size: 12px; }
+		.badge-dot { width: 8px; height: 8px; border-radius: 999px; background: linear-gradient(135deg, var(--blue), var(--gold)); box-shadow: 0 0 14px rgba(14,165,233,0.45); }
+		.club-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+		.price { color: var(--gold); font-weight: 800; }
+		.features { 
+			display: grid; 
+			grid-template-columns: repeat(3, 1fr); 
+			gap: 16px; 
+			margin-top: 20px;
+			align-items: stretch;
+		}
+		@media (max-width: 900px) { 
+			.features { 
+				grid-template-columns: repeat(2, 1fr); 
+				gap: 14px;
+			} 
+		}
+		@media (max-width: 560px) { 
+			.features { 
+				grid-template-columns: 1fr; 
+				gap: 12px;
+			} 
+		}
+		.feature { 
+			background: rgba(255,255,255,0.03); 
+			border: 1px solid rgba(255,255,255,0.08); 
+			border-radius: 14px; 
+			padding: 16px; 
+			display: grid; 
+			grid-template-columns: 32px 1fr; 
+			gap: 12px; 
+			align-items: start; 
+			height: 100%;
+		}
+		.feature svg { 
+			width: 24px; 
+			height: 24px; 
+			color: var(--blue); 
+			margin-top: 0; 
+			display: block; 
+			flex-shrink: 0;
+		}
+		.feature h4 { 
+			margin: 0 0 8px; 
+			font-size: 15px; 
+			line-height: 1.3; 
+			font-weight: 700;
+			color: var(--text);
+		}
+		.feature p { 
+			margin: 0; 
+			color: var(--muted); 
+			font-size: 13px; 
+			line-height: 1.5;
+		}
+	</style>
+</head>
+<body>
+	<!-- NAVBAR -->
+	<header class="navbar">
+		<div class="container nav-inner">
+			<div class="brand">
+				<div class="brand-logo" aria-hidden="true">
+					<img src="logo/image_search_1755272150693.jpg" alt="Hyper Adityaa Logo" />
+				</div>
+				<div class="brand-name">Hyper <span style="color: var(--gold)">Adityaa</span></div>
+			</div>
+			<button class="menu-btn" id="menuToggle" aria-label="Toggle navigation">☰ Menu</button>
+			<nav id="nav">
+				<div class="nav-links">
+					<a href="#home">Home</a>
+					<a href="#journey">Journey</a>
+					<a href="#club">Club</a>
+					<a href="#content">Content</a>
+					<a href="#contact">Contact</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<!-- HERO -->
+	<section id="home" class="hero section">
+		<div class="bg-gradient"></div>
+		<div class="container hero-inner reveal">
+			<!-- Profile Photo -->
+			<div class="hero-profile">
+				<img src="HIS photo/472725366_957780882932433_3376102577437367748_n.jpg" alt="Hyper Adityaa" class="profile-image" />
+				<div class="profile-glow"></div>
+			</div>
+			
+			<div class="kicker">Motivation • Momentum • Mastery</div>
+			<h1>
+				<span id="dayHeadline" class="gradient">Day X of Becoming a Billionaire Before April 17, 2030</span>
+			</h1>
+			<p>Transforming <strong>Mindset</strong> • <strong>Money</strong> • <strong>Muscle</strong> — documenting the unfiltered journey to the top.</p>
+			<div class="cta">
+				<a href="#journey" class="btn btn-primary">Join the Journey</a>
+				<button class="btn btn-secondary" id="watchVideos">Watch Videos</button>
+			</div>
+			
+			<!-- Real-time Countdown Timer -->
+			<div class="countdown-container reveal">
+				<div class="countdown-title">Time Remaining Until Deadline</div>
+				<div class="countdown" id="countdown">
+					<div class="countdown-item">
+						<span class="countdown-number">0</span>
+						<span class="countdown-label">Days</span>
+					</div>
+					<div class="countdown-item">
+						<span class="countdown-number">0</span>
+						<span class="countdown-label">Hours</span>
+					</div>
+					<div class="countdown-item">
+						<span class="countdown-number">0</span>
+						<span class="countdown-label">Minutes</span>
+					</div>
+					<div class="countdown-item">
+						<span class="countdown-number">0</span>
+						<span class="countdown-label">Seconds</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- JOURNEY -->
+	<section id="journey" class="section">
+		<div class="container">
+			<h2 class="section-title reveal">The Journey</h2>
+			<p class="section-sub reveal">A public commitment to build, learn, and push limits — every single day.</p>
+			<div class="bio reveal">
+				<p><strong>Hyper Adityaa</strong> is an entrepreneur on a mission to become a billionaire before <strong>April 17, 2030</strong>. This is a transparent chronicle of the grind — building products, stacking skills, training body and mind, and creating value at scale.</p>
+				<div class="metrics">
+					<div class="metric">
+						<div>
+							<div class="label">Days Completed</div>
+							<div id="daysCompleted" class="num blue">0</div>
+						</div>
+						<div class="label" id="startDateLabel">Start: —</div>
+					</div>
+					<div class="metric">
+						<div>
+							<div class="label">Days Remaining</div>
+							<div id="daysRemaining" class="num gold">0</div>
+						</div>
+						<div class="label" id="deadlineLabel">Deadline: Apr 17, 2030</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline reveal">
+				<div class="timeline-bar"><div class="progress" id="progressBar"></div></div>
+				<div class="milestones" id="milestones"></div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<!-- HYPER CLUB SPOTLIGHT -->
+	<section id="club" class="section club">
+		<div class="container">
+			<div class="club-banner reveal">
+				<div class="club-head">
+					<div>
+						<div class="badge"><span class="badge-dot"></span> Transform Your Execution Era</div>
+						<h2 class="club-title">Hyper Club</h2>
+						<p class="club-sub">Stop consuming. Start building. A discipline and systems engine for the distracted generation — not a course, a complete identity transformation system.</p>
+						<div class="club-cta">
+							<a class="btn btn-primary" href="https://hyperclub.netlify.app/" target="_blank" rel="noopener noreferrer">Join Now — ₹200</a>
+							<span class="price">Built for serious builders only</span>
+						</div>
+					</div>
+					<div>
+						<div class="features">
+							<div class="feature">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+								<div>
+									<h4>Daily Goal Submission</h4>
+									<p>Submit targets by 9 AM in your HyperTeam. No excuses.</p>
+								</div>
+							</div>
+							<div class="feature">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+								<div>
+									<h4>Screen Time Accountability</h4>
+									<p>Share daily screen time by 10 PM. Justify every hour.</p>
+								</div>
+							</div>
+							<div class="feature">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18"/><path d="M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7"/><path d="M10 7V5a2 2 0 0 1 2-2 2 2 0 0 1 2 2v2"/></svg>
+								<div>
+									<h4>Mentor-Led HyperTeams</h4>
+									<p>Small, focused groups led by the team. Navy SEAL energy.</p>
+								</div>
+							</div>
+							<div class="feature">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+								<div>
+									<h4>Execution-Only Idea Group</h4>
+									<p>Frameworks and mental models. No spam. No fluff.</p>
+								</div>
+							</div>
+							<div class="feature">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 0 6.5 7H20"/></svg>
+								<div>
+									<h4>Weekly Content Drops</h4>
+									<p>Audio summaries, principles, and laws to stay sharp.</p>
+								</div>
+							</div>
+							<div class="feature">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 8V6a5 5 0 0 1 10 0v2"/></svg>
+								<div>
+									<h4>WhatsApp Community</h4>
+									<p>Everything runs inside WhatsApp. Pure focus and execution.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CONTENT -->
+	<section id="content" class="section">
+		<div class="container">
+			<h2 class="section-title reveal">Content</h2>
+			<p class="section-sub reveal">Weekly videos, daily shorts, and behind-the-scenes execution.</p>
+			<div class="social-links-container reveal">
+				<div class="social-link-card youtube">
+					<a href="https://m.youtube.com/@hyperadityaofficial?fbclid=PAQ0xDSwMMKSJleHRuA2FlbQIxMAABp4ylhGwqJsgOQyJT6C8DcOp8V2whX3cNqb7N8fPjffTCcWxH_6YfgcjrfOAq_aem_UCq-6SExll7aciWcsmzxuA" target="_blank" rel="noopener noreferrer">
+						<div class="social-icon-large">
+							<svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+								<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.8 3.5 12 3.5 12 3.5s-7.8 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.6.6 9.4.6 9.4.6s7.8 0 9.4-.6a3 3 0 0 0 2.1-2.1 31.3 31.3 0 0 0 .5-5.8 31.3 31.3 0 0 0-.5-5.8zM9.8 15.5V8.5L15.5 12l-5.7 3.5z"/>
+							</svg>
+						</div>
+						<h3>YouTube Channel</h3>
+						<p>Watch my latest videos, mindset tips, and behind-the-scenes content</p>
+						<div class="social-cta">Visit Channel →</div>
+					</a>
+				</div>
+				
+				<div class="social-link-card instagram">
+					<a href="https://www.instagram.com/hyperadityaa?igsh=MWRleDZ6Mnp5OXJ4eA==" target="_blank" rel="noopener noreferrer">
+						<div class="social-icon-large">
+							<svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+								<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001A5.5 5.5 0 0 1 12 7.5zm0 2a3.5 3.5 0 1 0 0 7.001 3.5 3.5 0 0 0 0-7zm5.75-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+							</svg>
+						</div>
+						<h3>Instagram</h3>
+						<p>Follow my daily journey, mindset posts, and real-time updates</p>
+						<div class="social-cta">Follow Me →</div>
+					</a>
+				</div>
+				
+				<div class="social-link-card ebook">
+					<a href="https://hyperboy55555.systeme.io/c1cc7561?fbclid=PAQ0xDSwMMKTpleHRuA2FlbQIxMQABpwbfwbyMkLT7cbU4sI_qhesexlx46e4NpXFH687HQ2m-frI1hiaXZ-Ywq7gW_aem_M1QLjMWTV5FG6QyVW3XZug" target="_blank" rel="noopener noreferrer">
+						<div class="social-icon-large">
+							<svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+								<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+								<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+							</svg>
+						</div>
+						<h3>E-Book Store</h3>
+						<p>150+ E-books about Discipline, Mindset and Business. Get your knowledge boost now!</p>
+						<div class="social-cta">Get E-books →</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<!-- CONTACT -->
+	<section id="contact" class="section">
+		<div class="container">
+			<h2 class="section-title reveal">Direct Contact</h2>
+			<p class="section-sub reveal">Reach out directly via WhatsApp or email for immediate assistance</p>
+			<div class="direct-contact reveal">
+				<div class="direct-contact-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+						<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+					</svg>
+				</div>
+				
+				<div class="contact-methods">
+					<div class="contact-method">
+						<div class="contact-method-icon">
+							<svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+								<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+							</svg>
+						</div>
+						<div class="contact-method-content">
+							<h3>WhatsApp Me</h3>
+							<div class="contact-detail">+91 91293 30706</div>
+							<div class="contact-note">Available 24/7 - Fastest response</div>
+						</div>
+					</div>
+					
+					<div class="contact-method">
+						<div class="contact-method-icon">
+							<svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+								<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+							</svg>
+						</div>
+						<div class="contact-method-content">
+							<h3>Email Support</h3>
+							<div class="contact-detail">hyperclub172007@gmail.com</div>
+							<div class="contact-note">Response within 24 hours</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer>
+		<div class="container">
+			<div>© <span id="year"></span> Hyper Adityaa. All rights reserved.</div>
+		</div>
+	</footer>
+
+	<!-- Lightbox Overlay -->
+	<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+		<div class="lightbox-content">
+			<button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+			<div class="lightbox-frame" id="lightboxFrame">
+				<!-- Media injected by JS: iframe for video or <img> for image -->
+			</div>
+		</div>
+	</div>
+
+	<button class="back-to-top" id="backToTop" aria-label="Back to top">▲</button>
+
+	<script>
+		// ================== CONFIG (EDIT THESE) ==================
+		// EDIT: Set the start date of the journey here (YYYY, M-1, D)
+		// Example: new Date(Date.UTC(2024, 3, 17)) // April 17, 2024 UTC
+		const JOURNEY_START_DATE_UTC = new Date(Date.UTC(2024, 3, 17));
+
+		// Deadline: April 17, 2030 (Fixed per brief)
+		const DEADLINE_UTC = new Date(Date.UTC(2030, 3, 17));
+		
+
+		// =========================================================
+
+		// Utility: format date (Apr 17, 2030)
+		function formatDateHuman(date) {
+			return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+		}
+
+		// Utility: days between two UTC dates
+		function diffDaysUTC(a, b) {
+			const MS_PER_DAY = 24 * 60 * 60 * 1000;
+			const start = Date.UTC(a.getUTCFullYear(), a.getUTCMonth(), a.getUTCDate());
+			const end = Date.UTC(b.getUTCFullYear(), b.getUTCMonth(), b.getUTCDate());
+			return Math.floor((end - start) / MS_PER_DAY);
+		}
+
+		// Advanced date utilities
+		function getTimeRemaining() {
+			const now = new Date();
+			const nowUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()));
+			const deadline = DEADLINE_UTC;
+			const total = deadline - nowUTC;
+			
+			if (total <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+			
+			const days = Math.floor(total / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((total % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((total % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((total % (1000 * 60)) / 1000);
+			
+			return { days, hours, minutes, seconds };
+		}
+
+		// Enhanced animated counter with bounce effect
+		function animateCount(element, toValue, duration = 1500) {
+			const startValue = parseInt(element.textContent) || 0;
+			const startTime = performance.now();
+			
+			function frame(now) {
+				const progress = Math.min(1, (now - startTime) / duration);
+				// Bounce easing function
+				const eased = progress < 0.5 ? 
+					4 * progress * progress * progress : 
+					1 - Math.pow(-2 * progress + 2, 3) / 2;
+				
+				const value = Math.round(startValue + (toValue - startValue) * eased);
+				element.textContent = value.toLocaleString();
+				
+				if (progress < 1) {
+					requestAnimationFrame(frame);
+				} else {
+					// Add final bounce effect
+					element.style.transform = 'scale(1.1)';
+					setTimeout(() => {
+						element.style.transform = 'scale(1)';
+					}, 150);
+				}
+			}
+			requestAnimationFrame(frame);
+		}
+
+		// Advanced Intersection Observer with staggered animations
+		const revealObserver = new IntersectionObserver((entries) => {
+			entries.forEach((entry, index) => {
+				if (entry.isIntersecting) {
+					// Stagger animation delay
+					setTimeout(() => {
+						entry.target.classList.add('in');
+						entry.target.style.animationDelay = `${index * 0.1}s`;
+					}, index * 100);
+				}
+			});
+		}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+		document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+		
+		// Parallax effect for background elements
+		window.addEventListener('scroll', () => {
+			const scrolled = window.pageYOffset;
+			const parallaxElements = document.querySelectorAll('.bg-gradient');
+			
+			parallaxElements.forEach(element => {
+				const speed = 0.5;
+				element.style.transform = `translateY(${scrolled * speed}px)`;
+			});
+		});
+
+		// Enhanced navbar with scroll effects
+		const menuToggle = document.getElementById('menuToggle');
+		const nav = document.getElementById('nav');
+		const navbar = document.querySelector('header.navbar');
+		
+		// Navbar scroll effect
+		window.addEventListener('scroll', () => {
+			if (window.scrollY > 100) {
+				navbar.classList.add('scrolled');
+			} else {
+				navbar.classList.remove('scrolled');
+			}
+		});
+		
+		// Mobile menu toggle with animation
+		menuToggle.addEventListener('click', () => {
+			nav.classList.toggle('open');
+			menuToggle.style.transform = nav.classList.contains('open') ? 'rotate(90deg)' : 'rotate(0deg)';
+		});
+		
+		nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+			nav.classList.remove('open');
+			menuToggle.style.transform = 'rotate(0deg)';
+		}));
+
+		// Smooth-scroll adjustment for fixed header (optional enhancement)
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function(e) {
+				const targetId = this.getAttribute('href');
+				if (targetId.length > 1) {
+					e.preventDefault();
+					const target = document.querySelector(targetId);
+					if (!target) return;
+					const header = document.querySelector('header.navbar');
+					const offset = header ? header.getBoundingClientRect().height + 12 : 0;
+					const top = target.getBoundingClientRect().top + window.scrollY - offset;
+					window.scrollTo({ top, behavior: 'smooth' });
+				}
+			});
+		});
+
+		// Enhanced day calculations with real-time updates
+		function updateDays() {
+			const nowUTC = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));
+			const completed = Math.max(0, diffDaysUTC(JOURNEY_START_DATE_UTC, nowUTC));
+			const remaining = Math.max(0, diffDaysUTC(nowUTC, DEADLINE_UTC));
+
+			// Headline with dynamic updates
+			const headline = document.getElementById('dayHeadline');
+			headline.textContent = `Day ${completed.toLocaleString()} of Becoming a Billionaire Before April 17, 2030`;
+
+			// Animated metrics
+			animateCount(document.getElementById('daysCompleted'), completed);
+			animateCount(document.getElementById('daysRemaining'), remaining);
+			document.getElementById('startDateLabel').textContent = `Start: ${formatDateHuman(JOURNEY_START_DATE_UTC)}`;
+			document.getElementById('deadlineLabel').textContent = `Deadline: ${formatDateHuman(DEADLINE_UTC)}`;
+
+			// Enhanced progress bar with animation
+			const totalPlanned = Math.max(1, diffDaysUTC(JOURNEY_START_DATE_UTC, DEADLINE_UTC));
+			const pct = Math.min(100, Math.max(0, (completed / totalPlanned) * 100));
+			const progressBar = document.getElementById('progressBar');
+			
+			// Smooth progress bar animation
+			progressBar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+			progressBar.style.width = pct + '%';
+			
+			// Add glow effect based on progress
+			if (pct > 50) {
+				progressBar.style.boxShadow = '0 0 30px rgba(0,212,255,0.6)';
+			} else if (pct > 25) {
+				progressBar.style.boxShadow = '0 0 20px rgba(255,215,0,0.5)';
+			}
+		}
+		
+		// Real-time countdown timer
+		function updateCountdown() {
+			const timeRemaining = getTimeRemaining();
+			const countdownElement = document.getElementById('countdown');
+			
+			if (countdownElement) {
+				countdownElement.innerHTML = `
+					<div class="countdown-item">
+						<span class="countdown-number">${timeRemaining.days}</span>
+						<span class="countdown-label">Days</span>
+					</div>
+					<div class="countdown-item">
+						<span class="countdown-number">${timeRemaining.hours}</span>
+						<span class="countdown-label">Hours</span>
+					</div>
+					<div class="countdown-item">
+						<span class="countdown-number">${timeRemaining.minutes}</span>
+						<span class="countdown-label">Minutes</span>
+					</div>
+					<div class="countdown-item">
+						<span class="countdown-number">${timeRemaining.seconds}</span>
+						<span class="countdown-label">Seconds</span>
+					</div>
+				`;
+			}
+		}
+
+		// Timeline data (EDIT titles/descriptions as you like)
+		const MILESTONES = [
+			{ title: 'Day 1 — Declaration', date: new Date(Date.UTC(2024, 3, 17)), desc: 'Publicly declare the mission. Set metrics. Lock the deadline.' },
+			{ title: 'First 100 Days', date: new Date(Date.UTC(2024, 6, 26)), desc: 'Ship MVPs, test offers, publish consistently across platforms.' },
+			{ title: 'Year 1 — Systems', date: new Date(Date.UTC(2025, 3, 17)), desc: 'Dial in content engine, product-market fit exploration, and daily training.' },
+			{ title: 'Year 3 — Scale', date: new Date(Date.UTC(2027, 3, 17)), desc: 'Leverage, team building, and capital allocation. Turn experiments into engines.' },
+			{ title: '2030 — Outcome', date: new Date(Date.UTC(2030, 3, 17)), desc: 'Hit the goal or learn from the gap. Either way, build forever.' }
+		];
+
+		function renderTimeline() {
+			const list = document.getElementById('milestones');
+			list.innerHTML = '';
+			MILESTONES.forEach((m, i) => {
+				const item = document.createElement('div');
+				item.className = 'milestone';
+				item.innerHTML = `
+					<div class="m-title">${m.title}</div>
+					<div class="m-date">${formatDateHuman(m.date)}</div>
+					<div class="m-desc">${m.desc}</div>
+				`;
+				item.addEventListener('click', () => {
+					list.querySelectorAll('.milestone').forEach(el => el.classList.remove('active'));
+					item.classList.add('active');
+				});
+				if (i === 0) item.classList.add('active');
+				list.appendChild(item);
+			});
+		}
+
+		// Lightbox
+		const lightbox = document.getElementById('lightbox');
+		const lightboxFrame = document.getElementById('lightboxFrame');
+		const lightboxClose = document.getElementById('lightboxClose');
+		function openLightboxWithIframe(src) {
+			lightboxFrame.innerHTML = `<iframe class="video" style="aspect-ratio:16/9; display:block; width:100%;" src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+			lightbox.classList.add('open');
+		}
+		function openLightboxWithImage(imageSrc) {
+			lightboxFrame.innerHTML = `<img class="lightbox-media" src="${imageSrc}" alt="Hyper Adityaa Content" />`;
+			lightbox.classList.add('open');
+		}
+		lightboxClose.addEventListener('click', () => {
+			lightbox.classList.remove('open');
+			lightboxFrame.innerHTML = '';
+		});
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox) lightboxClose.click();
+		});
+
+		// Reels grid now uses direct social media links - no click handler needed
+
+		// Watch Videos button opens YouTube channel
+		document.getElementById('watchVideos').addEventListener('click', () => {
+			window.open('https://m.youtube.com/@hyperadityaofficial?fbclid=PAQ0xDSwMMKSJleHRuA2FlbQIxMAABp4ylhGwqJsgOQyJT6C8DcOp8V2whX3cNqb7N8fPjffTCcWxH_6YfgcjrfOAq_aem_UCq-6SExll7aciWcsmzxuA', '_blank', 'noopener,noreferrer');
+		});
+
+
+
+		// Back-to-top
+		const backToTop = document.getElementById('backToTop');
+		window.addEventListener('scroll', () => {
+			backToTop.classList.toggle('show', window.scrollY > 600);
+		});
+		backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+		// Footer year
+		document.getElementById('year').textContent = new Date().getFullYear();
+
+		// Initialize everything
+		renderTimeline();
+		updateDays();
+		updateCountdown();
+		
+		// Real-time countdown updates
+		setInterval(updateCountdown, 1000);
+		
+		// Auto-refresh day calculations every hour
+		setInterval(updateDays, 3600000);
+		
+		// Add loading animation
+		window.addEventListener('load', () => {
+			document.body.classList.add('loaded');
+			// Trigger initial animations
+			setTimeout(() => {
+				document.querySelectorAll('.reveal').forEach((el, index) => {
+					setTimeout(() => el.classList.add('in'), index * 200);
+				});
+			}, 500);
+		});
+		
+		// Enhanced smooth scrolling
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function(e) {
+				const targetId = this.getAttribute('href');
+				if (targetId.length > 1) {
+					e.preventDefault();
+					const target = document.querySelector(targetId);
+					if (!target) return;
+					
+					const header = document.querySelector('header.navbar');
+					const offset = header ? header.getBoundingClientRect().height + 20 : 0;
+					const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+					
+					window.scrollTo({
+						top: targetPosition,
+						behavior: 'smooth'
+					});
+				}
+			});
+		});
+	</script>
+</body>
+</html> 
